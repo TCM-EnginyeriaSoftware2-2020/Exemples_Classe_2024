@@ -12,6 +12,7 @@ import CapaDomini.PatroAdaptador.IZoombi;
 class TestPatroAdaptador {
 
 	private Personatge personatge;
+	// si volieu podieu utilitzar un únic TestCase per fer totes les proves
 	private static FactoriaSingleton factoriaUnica;
 	
 	@BeforeAll
@@ -23,7 +24,16 @@ class TestPatroAdaptador {
 	void setUp() {
 		personatge = new Personatge( 5 );
 	}
-	
+
+	@Test
+	public void testAdaptadorInvalidParams() {
+		assertThrows(IllegalArgumentException.class, ()->{new AdaptadorZoombiAmagat(new int[]{});});
+		assertThrows(NullPointerException.class, ()->{new AdaptadorZoombiAmagat(null);});
+		assertThrows(IllegalArgumentException.class, ()->{new AdaptadorZoombiAtacant(new int[]{});});
+		assertThrows(NullPointerException.class, ()->{new AdaptadorZoombiAtacant(null);});
+		assertThrows(IllegalArgumentException.class, ()->{new AdaptadorZoombiCaminant(new int[]{});});
+		assertThrows(NullPointerException.class, ()->{new AdaptadorZoombiCaminant(null);});
+	}
 
 	@Test
 	void test_ZoombiAmagat() {
